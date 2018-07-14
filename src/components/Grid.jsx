@@ -13,3 +13,5 @@ const Grid = (props) => {
 Grid.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export default Grid;
