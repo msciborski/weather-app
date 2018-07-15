@@ -7,7 +7,9 @@ const Grid = (props) => {
 
   return (
     <div className={`container ${styles}`}>
+    <div className="left-panel" />
       {children}
+    <div className="right-panel" />
     </div>
   );
 };
