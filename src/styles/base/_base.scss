@@ -11,11 +11,13 @@ body {
 .container {
   display: grid;
   width: 100%;
-  grid-template-rows: 1fr max-content;
+  grid-template-rows: 6rem 1fr 5fr;
   grid-template-columns: 0.5fr 6fr 0.5fr;
   justify-self: center;
 }
 .content {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr;
   grid-column: 2;
   border-radius: 0.2rem;
   border: 1px solid black;

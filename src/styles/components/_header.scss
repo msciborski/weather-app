@@ -1,7 +1,10 @@
 .header {
+  display: flex;
   background-color: $primary_color;
   grid-column-start: span 3;
   box-shadow: $shadow_lvl2;
+  grid-row: 1;
+  align-items: center;
 }
 .header__title {
   color: $text_icons;

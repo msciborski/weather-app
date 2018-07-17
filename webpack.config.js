@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const absolutePath = path.join(__dirname, 'public');
 const absolutePathToSrc = path.join(__dirname, 'src');
+
 module.exports = {
   entry: {
     app: './src/app.js',
@@ -40,4 +41,7 @@ module.exports = {
       },
     ),
   ],
+  node: {
+    fs: 'empty',
+  },
 };

@@ -22,5 +22,11 @@ module.exports = {
   "rules": {
     "react/jsx-filename-extension": [WARN, { "extensions": [".js", ".jsx"] }],
     "react/jsx-indent": [OFF],
+    "jsx-a11y/label-has-for": [ERROR, {
+      "components": ["Label"],
+      "required": {
+        "every": ["id"]
+      }
+    }]
   }
 };
