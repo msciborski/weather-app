@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import InputWithPlaceholder from './InputWithPlaceholder';
 
 export default class CitySearchBar extends Component {
   state = {
@@ -16,17 +17,17 @@ export default class CitySearchBar extends Component {
 
   render() {
     const { error } = this.state;
-    const errorClass = error ? 'error' : '';
-    const placeHolder = error ? 'Invalid city' : 'Enter valid city name';
+    const inputStyle = error ? 'search-bar__form__input-field error'
+      : 'search-bar__form__input-field';
+    const placeHolder = 'City';
     return (
       <div className="search-bar">
         <form id="form-city" name="form-city" className="search-bar__form">
-          <div className="search-bar__form__input-field">
-            <input type="text" name="city" onChange={this.handleCityChange} className={errorClass} />
-            <label htmlFor="city">
-              {placeHolder}
-            </label>
-          </div>
+          <InputWithPlaceholder
+            placeHolder={placeHolder}
+            inputStyle={inputStyle}
+            onChangeHandler={this.handleCityChange}
+          />
         </form>
       </div>
     );
