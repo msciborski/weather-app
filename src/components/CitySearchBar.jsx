@@ -3,28 +3,22 @@ import PropTypes from 'prop-types';
 import InputWithPlaceholder from './InputWithPlaceholder';
 
 export default class CitySearchBar extends Component {
-  state = {
-    error: undefined,
-  };
-
   handleCityChange = (e) => {
     const { setCity } = this.props;
     const city = e.target.value.trim();
     const error = setCity(city);
-
     this.setState(() => ({ error }));
   }
 
   render() {
-    const { error } = this.state;
-    const inputStyle = error ? 'search-bar__form__input-field error'
-      : 'search-bar__form__input-field';
-    const placeHolder = 'City';
+    const { fetchError } = this.props;
+    const inputStyle = !fetchError ? 'search-bar__form__input-field'
+      : 'search-bar__form__input-field error';
     return (
       <div className="search-bar">
         <form id="form-city" name="form-city" className="search-bar__form">
           <InputWithPlaceholder
-            placeHolder={placeHolder}
+            placeHolder="City"
             inputStyle={inputStyle}
             onChangeHandler={this.handleCityChange}
           />
@@ -36,4 +30,5 @@ export default class CitySearchBar extends Component {
 
 CitySearchBar.propTypes = {
   setCity: PropTypes.func.isRequired,
+  fetchError: PropTypes.string.isRequired,
 };

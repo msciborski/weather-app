@@ -22,21 +22,27 @@
   box-sizing: border-box;
   background: transparent;
 }
+.search-bar__form__input-field.error input,
+.search-bar__form__input-field.error input:active,
+.search-bar__form__input-field.error input:focus {
+  border: 0.15rem solid red;
+}
 
 .search-bar__form__input-field input:active,
 .search-bar__form__input-field input:focus {
   border: 1.5px solid $primary_color;
 }
 .search-bar__form__input-field input:active + label,
-.search-bar__form__input-field input:focus + label
+.search-bar__form__input-field input:focus + label,
+.search-bar__form__input-field input:valid + label
  {
   color: $primary_color;
   top: -0.7rem;
   left: 2rem;       /* where the label goes upon interaction */
   font-size: 1.4rem;   /* font-size change on interaction */
   z-index: 2;
-  padding-left: 0.2rem;
-  padding-right: 0.2rem;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
   background-color: white;
 }
 
