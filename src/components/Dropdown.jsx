@@ -11,6 +11,7 @@ export default class Dropdown extends Component {
         {element.name}
       </li>
     ));
+
     this.state = {
       optionsList,
       dropDownId: _.uniqueId('drop-down-'),
@@ -44,6 +45,7 @@ export default class Dropdown extends Component {
     const { dropDownId } = this.state;
     const { optionsList } = this.state;
     const { dropDownStyle } = this.props;
+    const { title } = this.props;
 
     return (
       <div
@@ -54,7 +56,7 @@ export default class Dropdown extends Component {
         className={`drop-down ${dropDownStyle}`}
       >
         <span className="drop-down__label">
-          Language
+          {title}
         </span>
         <span className="drop-down__bar" />
         <ul id="drop-down__list">
@@ -66,6 +68,7 @@ export default class Dropdown extends Component {
 }
 Dropdown.defaultProps = {
   dropDownStyle: '',
+  title: 'Language',
 };
 
 Dropdown.propTypes = {
@@ -78,4 +81,5 @@ Dropdown.propTypes = {
   })).isRequired,
   dropDownStyle: PropTypes.string,
   selectHandler: PropTypes.func.isRequired,
+  title: PropTypes.string,
 };

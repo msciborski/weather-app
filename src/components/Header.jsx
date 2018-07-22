@@ -25,6 +25,7 @@ Header.defaultProps = {
   ],
   setLang: undefined,
 };
+
 Header.propTypes = {
   title: PropTypes.string,
   lang: PropTypes.arrayOf(PropTypes.shape({

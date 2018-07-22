@@ -6,8 +6,7 @@ export default class CitySearchBar extends Component {
   handleCityChange = (e) => {
     const { setCity } = this.props;
     const city = e.target.value.trim();
-    const error = setCity(city);
-    this.setState(() => ({ error }));
+    setCity(city);
   }
 
   render() {

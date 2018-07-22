@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import Grid from './Grid';
 import Header from './Header';
 import WeatherContent from './WeatherContent';
@@ -13,20 +14,23 @@ export default class WeatherApp extends Component {
     weather: undefined,
     units: 'metric',
     error: undefined,
-    lang: 'pl',
+    selectedLang: 'pl',
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { city } = this.state;
     const { units } = this.state;
-    const { lang } = this.state;
+    const { selectedLang } = this.state;
     if (prevState.city !== city) {
-      this.fetchWeather(city, units, lang);
+      this.fetchWeather(city, units, selectedLang);
     }
   }
 
   setCity = _.debounce((city) => {
-    this.setState(() => ({ city }));
+    if (city !== '') {
+      this.setState(() => ({ city }));
+    }
+    this.setState(() => ({ error: undefined }));
   }, 400);
 
   setError = (error) => {
@@ -39,7 +43,7 @@ export default class WeatherApp extends Component {
   }
 
   setLanguage = (lang) => {
-    this.setState(() => ({ lang }));
+    this.setState(() => ({ selectedLang: lang }));
   }
 
   fetchWeather = (city, units, lang) => {
@@ -59,12 +63,26 @@ export default class WeatherApp extends Component {
   render() {
     const { weather } = this.state;
     const { error } = this.state;
+    const { languages } = this.props;
     return (
       <Grid>
-        <Header setLang={this.setLanguage} />
+        <Header lang={languages} setLang={this.setLanguage} />
         <CitySearchBar setCity={this.setCity} fetchError={error} />
         {weather && <WeatherContent weather={weather} />}
       </Grid>
     );
   }
 }
+WeatherApp.defaultProps = {
+  languages: [
+    { name: 'Polish', value: 'pl' },
+    { name: 'English', value: 'en' },
+    { name: 'Russia', value: 'ru' },
+  ],
+};
+WeatherApp.propTypes = {
+  languages: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+  })),
+};
