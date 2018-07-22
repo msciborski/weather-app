@@ -38,6 +38,10 @@ export default class WeatherApp extends Component {
     this.setError(undefined);
   }
 
+  setLanguage = (lang) => {
+    this.setState(() => ({ lang }));
+  }
+
   fetchWeather = (city, units, lang) => {
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${API_KEY}&units=${units}&lang=${lang}`;
     fetch(url)
@@ -57,7 +61,7 @@ export default class WeatherApp extends Component {
     const { error } = this.state;
     return (
       <Grid>
-        <Header />
+        <Header setLang={this.setLanguage} />
         <CitySearchBar setCity={this.setCity} fetchError={error} />
         {weather && <WeatherContent weather={weather} />}
       </Grid>

@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CitySearchBar from './CitySearchBar';
+import CityWeatherHeader from './CityWeatherHeader';
 
 const WeatherContent = (props) => {
-  const { setCity } = props;
+  const { weather } = props;
   return (
     <div className="content">
-      <CitySearchBar setCity={setCity} />
+      <CityWeatherHeader />
     </div>
   );
 };
 WeatherContent.propTypes = {
-  setCity: PropTypes.func.isRequired,
+  weather: PropTypes.object.isRequired,
 };
 export default WeatherContent;

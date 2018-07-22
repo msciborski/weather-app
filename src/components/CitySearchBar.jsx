@@ -27,8 +27,10 @@ export default class CitySearchBar extends Component {
     );
   }
 }
-
+CitySearchBar.defaultProps = {
+  fetchError: undefined,
+};
 CitySearchBar.propTypes = {
   setCity: PropTypes.func.isRequired,
-  fetchError: PropTypes.string.isRequired,
+  fetchError: PropTypes.string,
 };
