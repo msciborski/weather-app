@@ -6,16 +6,29 @@
   min-width: 5rem;
   justify-content: center;
   color: $text_icons;
-
+  background: $dark_primary_color no-repeat;
   margin-right: 3rem;
+
+  background-image: linear-gradient(to bottom, $accent_color, $accent_color), linear-gradient(to bottom, $text_icons, $text_icons);
+  background-size: 0 2px, 100% 1px;
+  background-position: 50% 100%, 50% 100%;
+  transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
 }
+
+.drop-down:focus {
+  background-size: 100% 2px, 100% 1px;
+  outline: none;
+  color: $accent_color;
+}
+
 .drop-down__label {
   padding-bottom: 0.17rem;
 }
+
 .drop-down ul {
   display: flex;
   position: absolute;
-  top:10%;
+  top:30%;
   overflow: hidden;
   padding: 0;
   min-width: 7rem;
@@ -29,6 +42,7 @@
   transform: scale(0);
   transform-origin: 0 0;
 }
+
 .drop-down ul li {
   text-decoration: none;
   display: flex;
@@ -41,11 +55,12 @@
 .drop-down ul li:hover {
   background-color: $light_primary_color;
 }
+
 .drop-down ul li[selected] {
-  background-color: $divider_color;
+  background-color: $accent_color;
 }
-.drop-down:hover > ul,
-.drop-down:focus > ul {
+
+ul.opened {
   display: block;
   transform: scale(1);
   height: auto;

@@ -4,12 +4,15 @@
   grid-column: 2;
   margin-top: 1.5rem;
 }
+
 .search-bar__input-field {
   width: 100%;
 }
+
 .search-bar__form__input-field {
   position: relative;
 }
+
 .search-bar__form__input-field input {
   width: 100%;
   height: 5rem;
@@ -22,6 +25,7 @@
   box-sizing: border-box;
   background: transparent;
 }
+
 .search-bar__form__input-field.error input,
 .search-bar__form__input-field.error input:active,
 .search-bar__form__input-field.error input:focus {
@@ -32,6 +36,7 @@
 .search-bar__form__input-field input:focus {
   border: 1.5px solid $primary_color;
 }
+
 .search-bar__form__input-field input:active + label,
 .search-bar__form__input-field input:focus + label,
 .search-bar__form__input-field input:valid + label
