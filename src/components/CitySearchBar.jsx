@@ -9,13 +9,17 @@ export default class CitySearchBar extends Component {
     setCity(city);
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   render() {
     const { fetchError } = this.props;
     const inputStyle = !fetchError ? 'search-bar__form__input-field'
       : 'search-bar__form__input-field error';
     return (
       <div className="search-bar">
-        <form id="form-city" name="form-city" className="search-bar__form">
+        <form id="form-city" name="form-city" className="search-bar__form" onSubmit={this.handleSubmit}>
           <InputWithPlaceholder
             placeHolder="City"
             inputStyle={inputStyle}

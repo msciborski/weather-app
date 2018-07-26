@@ -4,9 +4,12 @@ import CityWeatherHeader from './CityWeatherHeader';
 
 const WeatherContent = (props) => {
   const { weather } = props;
+  const { name, main, sys } = weather;
+  const description = weather.weather[0].main;
+
   return (
-    <div className="content">
-      <CityWeatherHeader />
+    <div className="weather-content">
+      <CityWeatherHeader city={name} mainWeatherInfo={main} mainSysInfo={sys} description={description} />
     </div>
   );
 };
