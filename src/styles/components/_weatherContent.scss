@@ -1,12 +1,15 @@
-.content__weather-content {
+.weather-content {
+  display: grid;
   grid-row: 3;
   grid-column: 2;
-  height: 400px;
-  border: 1px solid black;
+  grid-template-rows: auto auto;
+  margin-top: 1rem;
 }
-.content {
-  grid-row: 3;
-  grid-column: 2;
-  height: 400px;
-  border: 1px solid black;
+.weather-content__header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 25rem;
+  box-shadow: $shadow_lvl1;
 }
+
+

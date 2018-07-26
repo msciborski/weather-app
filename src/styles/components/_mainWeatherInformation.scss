@@ -1,0 +1,55 @@
+.weather-content__header__main-information {
+  display: grid;
+  grid-template-rows: auto 0.5fr 0.5fr 0.5fr;
+  background-color: $primary_color;
+  box-shadow: $shadow_lvl2;
+}
+
+.weather-conent__header__main-information__icon,
+.weather-content__header__main-infromation__title,
+.weather-content__header__main-information__sun  {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  color: $text-icons;
+}
+
+.weather-content__header__main-information__icon__icon {
+  fill: $text-icons;
+}
+
+.weather-content__header__main-infromation__title h1 {
+  margin: 0;
+}
+
+.weather-content__header__main-information__sun {
+  flex-direction: row;
+}
+.weather-content__header__main-information__sun__sunrise,
+.weather-content__header__main-information__sun__sunset {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.weather-content__header__main__main-information__sun__sunrise__icon,
+.weather-content__header__main__main-information__sun__sunset__icon {
+  fill: $text-icons;
+  width: 4rem;
+  height: 4rem;
+}
+
+.weather-content__header__main-information__weather {
+  display: flex;
+  flex-direction: row;
+}
+
+.weahter-content__header__main-information__weather__temp {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+}
