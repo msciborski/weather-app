@@ -31,7 +31,16 @@ module.exports = {
     {
       test: /(\.css|\.scss|\.sass)$/,
       use: ['style-loader', 'css-loader', 'sass-loader'],
-    }],
+    },
+    {
+      test: /\.(png|jpg|gif|svg)$/,
+      use: [
+        {
+          loader: 'file-loader',
+        },
+      ],
+    },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(['public']),

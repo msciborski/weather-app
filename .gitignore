@@ -23,4 +23,5 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
+*.svg
 .env.*
