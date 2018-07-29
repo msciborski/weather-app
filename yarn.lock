@@ -93,6 +93,10 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
+"@tanem/svg-injector@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@tanem/svg-injector/-/svg-injector-1.2.1.tgz#3120e90246d0eb3c4fc6c61586a6f028a3c658ae"
+
 "@webassemblyjs/ast@1.5.13":
   version "1.5.13"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.5.13.tgz#81155a570bd5803a30ec31436bc2c9c0ede38f25"
@@ -2615,6 +2619,13 @@ file-entry-cache@^2.0.0:
     flat-cache "^1.2.1"
     object-assign "^4.0.1"
 
+file-loader@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-1.1.11.tgz#6fe886449b0f2a936e43cabaac0cdbfb369506f8"
+  dependencies:
+    loader-utils "^1.0.2"
+    schema-utils "^0.4.5"
+
 fill-range@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-4.0.0.tgz#d544811d428f98eb06a63dc402d2403c328c38f7"
@@ -4814,6 +4825,13 @@ react-router@^4.3.1:
     path-to-regexp "^1.7.0"
     prop-types "^15.6.1"
     warning "^4.0.1"
+
+react-svg@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-5.0.6.tgz#711c7ef114f1e41d5428c1fd54d8dd5864b41940"
+  dependencies:
+    "@tanem/svg-injector" "^1.2.1"
+    prop-types "^15.6.2"
 
 react@^16.4.1:
   version "16.4.1"

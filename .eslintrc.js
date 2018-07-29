@@ -27,6 +27,7 @@ module.exports = {
       "required": {
         "every": ["id"]
       }
-    }]
+    }],
+    "camelcase": [OFF],
   }
 };
