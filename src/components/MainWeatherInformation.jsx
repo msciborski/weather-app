@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactSVG from 'react-svg';
-import Sun from '../images/icons/Sun.svg';
-import Sunrise from '../images/icons/Sunrise.svg';
-import Sunset from '../images/icons/Sunset.svg';
+import Sun from '../images/icons/weather-sunny.svg';
+import Sunrise from '../images/icons/weather-sunset-up.svg';
+import Sunset from '../images/icons/weather-sunset-down.svg';
+import WeatherInfoRow from './WeatherInfoRow';
 
 const GetIcon = (description) => {
   switch (description) {
     case 'Clear': {
       return (
-        <ReactSVG path={Sun} className="weather-content__header__main-information__icon__icon" />
+        <ReactSVG path={Sun} svgClassName="weather-content__header__main-information__icon__icon" />
       );
     }
     default: {
@@ -24,8 +25,19 @@ const GetIcon = (description) => {
 
 const MainWeatherInformation = (props) => {
   const { mainInformation } = props;
-  const { city, country, sunrise, sunset, temp,
-            tempMax, tempMin, humidity, pressure, description} = mainInformation;
+
+  const {
+    city,
+    country,
+    sunrise,
+    sunset,
+    temp,
+    tempMax,
+    tempMin,
+    humidity,
+    pressure,
+    description,
+  } = mainInformation;
   const sunsetTime = new Date(sunset * 1000).toLocaleTimeString();
   const sunriseTime = new Date(sunrise * 1000).toLocaleTimeString();
 
@@ -54,13 +66,28 @@ const MainWeatherInformation = (props) => {
         </div>
       </div>
       <div className="weather-content__header__main-information__weather">
-        <div className="weahter-content__header__main-information__weather__temp">
-          {temp}
-        </div>
+        <WeatherInfoRow rowName="Temperatura" rowValue={temp} />
+        <WeatherInfoRow rowName="Min temp." rowValue={tempMin} />
+        <WeatherInfoRow rowName="Max temp." rowValue={tempMax} />
+        <WeatherInfoRow rowName="Wilgotnosc" rowValue={humidity} />
+        <WeatherInfoRow rowName="Cisnienie" rowValue={pressure} />
       </div>
     </div>
   );
 };
-
+MainWeatherInformation.propTypes = {
+  mainInformation: PropTypes.shape({
+    city: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    humidity: PropTypes.number.isRequired,
+    pressure: PropTypes.number.isRequired,
+    sunrise: PropTypes.number.isRequired,
+    sunset: PropTypes.number.isRequired,
+    temp: PropTypes.number.isRequired,
+    tempMax: PropTypes.number.isRequired,
+    tempMin: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
 export default MainWeatherInformation;
