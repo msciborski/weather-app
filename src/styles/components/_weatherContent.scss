@@ -4,12 +4,14 @@
   grid-column: 2;
   grid-template-rows: auto auto;
   margin-top: 1rem;
+
 }
 .weather-content__header {
   display: grid;
   grid-template-columns: 1fr 2fr;
   height: 25rem;
   box-shadow: $shadow_lvl1;
+  height: 100%;
 }
 
 

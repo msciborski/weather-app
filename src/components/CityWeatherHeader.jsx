@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MainWeatherInformation from './MainWeatherInformation';
+import ForecastChart from './ForecastChart';
 
 const CityWeatherHeader = (props) => {
+  const { forecast } = props;
   const {
     city, mainWeatherInfo, mainSysInfo, description,
   } = props;
@@ -28,6 +30,7 @@ const CityWeatherHeader = (props) => {
   return (
     <div className="weather-content__header">
       <MainWeatherInformation mainInformation={mainInformation} />
+      <ForecastChart forecast={forecast} />
     </div>
   );
 };

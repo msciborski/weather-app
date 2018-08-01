@@ -66,11 +66,11 @@ const MainWeatherInformation = (props) => {
         </div>
       </div>
       <div className="weather-content__header__main-information__weather">
-        <WeatherInfoRow rowName="Temperatura" rowValue={temp} />
+        <WeatherInfoRow rowName="Temperature" rowValue={temp} />
         <WeatherInfoRow rowName="Min temp." rowValue={tempMin} />
         <WeatherInfoRow rowName="Max temp." rowValue={tempMax} />
-        <WeatherInfoRow rowName="Wilgotnosc" rowValue={humidity} />
-        <WeatherInfoRow rowName="Cisnienie" rowValue={pressure} />
+        <WeatherInfoRow rowName="Humidity" rowValue={humidity} />
+        <WeatherInfoRow rowName="Pressure" rowValue={pressure} />
       </div>
     </div>
   );

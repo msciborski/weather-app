@@ -30,7 +30,7 @@ export default class ForecastUtils {
     const forecasts = [];
     let i = 0;
     while (i < list.length) {
-      if (i >= 12) {
+      if (i >= 8) {
         break;
       }
       const shortForecast = MapForecastToShortForecast(list[i]);
@@ -39,5 +39,4 @@ export default class ForecastUtils {
     }
     return forecasts;
   }
-
 }
