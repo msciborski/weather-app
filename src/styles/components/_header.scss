@@ -5,6 +5,7 @@
   box-shadow: $shadow_lvl3;
   grid-row: 1;
   align-items: center;
+  z-index: 3;
 }
 .header__title {
   color: $text_icons;
