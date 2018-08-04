@@ -1,0 +1,18 @@
+.weather-content__header__forecast-chart__tooltip__body {
+  display: grid;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: $shadow_lvl2;
+  background-color: $accent_color;
+  opacity: 1;
+  color: $text_icons;
+}
+.weather-content__header__forecast-chart__tooltip__body__label {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 auto;
+}
+.weather-content__header__forecast-chart__tooltip__body__info {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
