@@ -30,10 +30,13 @@ export default class ForecastChart extends Component {
   }
 
   componentDidMount() {
-    const ctx = document.getElementById('forecast-chart');
+    const { canvas } = this;
     const { labels, data } = this.state;
-    this.chart = new Chart(ctx, this.getChartOptions(labels, data));
+    this.chart = new Chart(canvas, this.getChartOptions(labels, data));
   }
+
+  setCanvasRef = (element) => { this.canvas = element; }
+
 
   getChartOptions = (labels, data) => ({
     type: 'bar',
@@ -69,7 +72,7 @@ export default class ForecastChart extends Component {
     if (!tooltipEl) {
       tooltipEl = document.createElement('div');
       tooltipEl.id = 'chartjs-tooltip';
-      tooltipEl.classList.add('weather-content__header__forecast-chart__tooltip');
+      tooltipEl.classList.add('weather-content__header__forecast-chart__tooltipweather-content__header__forecast-chart__tooltip');
       tooltipEl.innerHTML = '<div class="weather-content__header__forecast-chart__tooltip__body"></div>';
       document.body.appendChild(tooltipEl);
     }
@@ -116,8 +119,8 @@ export default class ForecastChart extends Component {
 
       const { canvas } = this.chart;
       const position = canvas.getBoundingClientRect();
-      // CSS that have to be set in js, becouse we need to know position of caret and canvas
 
+      // CSS that have to be set in js, becouse we need to know position of caret and canvas
       tooltipEl.style.opacity = 1;
       tooltipEl.style.position = 'absolute';
       tooltipEl.style.left = `${position.left + tooltipModel.caretX}px`;
@@ -129,8 +132,22 @@ export default class ForecastChart extends Component {
   render() {
     return (
       <div className="weather-content__header__forecast-chart">
-        <canvas id="forecast-chart" />
+        <canvas ref={this.setCanvasRef} id="forecast-chart" />
       </div>
     );
   }
 }
+
+ForecastChart.propTypes = {
+  forecast: PropTypes.shape({
+    dateTimeStamp: PropTypes.number.isRequired,
+    temp: PropTypes.number.isRequired,
+    tempMin: PropTypes.number.isRequired,
+    tempMax: PropTypes.number.isRequired,
+    pressure: PropTypes.number.isRequired,
+    seaLevel: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    main: PropTypes.string.isRequired,
+    clouds: PropTypes.number.isRequired,
+  }).isRequired,
+};
