@@ -1,27 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactSVG from 'react-svg';
-import Sun from '../images/icons/weather-sunny.svg';
 import Sunrise from '../images/icons/weather-sunset-up.svg';
 import Sunset from '../images/icons/weather-sunset-down.svg';
 import WeatherInfoRow from './WeatherInfoRow';
-
-const GetIcon = (description) => {
-  switch (description) {
-    case 'Clear': {
-      return (
-        <ReactSVG path={Sun} svgClassName="weather-content__header__main-information__icon__icon" />
-      );
-    }
-    default: {
-      return (
-        <div>
-          Default icon.
-        </div>
-      );
-    }
-  }
-};
+import GetIcon from '../utilites/IconPicker';
 
 const MainWeatherInformation = (props) => {
   const { mainInformation } = props;
