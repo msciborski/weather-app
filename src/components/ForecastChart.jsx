@@ -139,7 +139,7 @@ export default class ForecastChart extends Component {
 }
 
 ForecastChart.propTypes = {
-  forecast: PropTypes.shape({
+  forecast: PropTypes.arrayOf(PropTypes.shape({
     dateTimeStamp: PropTypes.number.isRequired,
     temp: PropTypes.number.isRequired,
     tempMin: PropTypes.number.isRequired,
@@ -149,5 +149,5 @@ ForecastChart.propTypes = {
     description: PropTypes.string.isRequired,
     main: PropTypes.string.isRequired,
     clouds: PropTypes.number.isRequired,
-  }).isRequired,
+  })).isRequired,
 };

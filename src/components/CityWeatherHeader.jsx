@@ -54,7 +54,7 @@ CityWeatherHeader.propTypes = {
     type: PropTypes.number,
   }).isRequired,
   description: PropTypes.string.isRequired,
-  forecast: PropTypes.shape({
+  forecast: PropTypes.arrayOf(PropTypes.shape({
     dateTimeStamp: PropTypes.number.isRequired,
     temp: PropTypes.number.isRequired,
     tempMin: PropTypes.number.isRequired,
@@ -64,5 +64,5 @@ CityWeatherHeader.propTypes = {
     description: PropTypes.string.isRequired,
     main: PropTypes.string.isRequired,
     clouds: PropTypes.number.isRequired,
-  }).isRequired,
+  })).isRequired,
 };

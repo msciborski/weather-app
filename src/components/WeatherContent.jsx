@@ -22,7 +22,7 @@ const WeatherContent = (props) => {
 };
 WeatherContent.propTypes = {
   weather: PropTypes.object.isRequired,
-  forecast: PropTypes.shape({
+  forecast: PropTypes.arrayOf(PropTypes.shape({
     dateTimeStamp: PropTypes.number.isRequired,
     temp: PropTypes.number.isRequired,
     tempMin: PropTypes.number.isRequired,
@@ -32,6 +32,6 @@ WeatherContent.propTypes = {
     description: PropTypes.string.isRequired,
     main: PropTypes.string.isRequired,
     clouds: PropTypes.number.isRequired,
-  }).isRequired,
+  })).isRequired,
 };
 export default WeatherContent;

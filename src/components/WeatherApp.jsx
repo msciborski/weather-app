@@ -23,18 +23,14 @@ export default class WeatherApp extends Component {
   }
 
   componentDidMount() {
-    this.setWeather(WEATHER_MOCK);
-    const forecast = ForecastUtils.GetForecast(FORECAST_MOCK);
-    this.setForecast(forecast);
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { city } = this.state;
     const { selectedUnit } = this.state;
     const { selectedLang } = this.state;
-    if (prevState.city !== city && !isDevelopment) {
-      this.fetchWeather(city, selectedUnit, selectedLang);
-      this.fetchForecast(city, selectedLang, selectedUnit);
+    if (prevState.city !== city || prevState.selectedLang !== selectedLang || prevState.selectedUnit !== selectedUnit) {
+      this.fetchData(city, selectedUnit, selectedLang);
     }
   }
 
@@ -72,7 +68,8 @@ export default class WeatherApp extends Component {
       .then(response => response.json())
       .then((responseJson) => {
         const { cod } = responseJson;
-        if (cod === 200) {
+        if (cod === '200') {
+          console.log(responseJson);
           this.setWeather(responseJson);
         } else {
           this.setError(responseJson.message);
@@ -86,12 +83,38 @@ export default class WeatherApp extends Component {
       .then(response => response.json())
       .then((responseJson) => {
         const { cod } = responseJson;
-        if (cod === 200) {
-          this.setForeact();
+        if (cod === '200') {
+          const forecast = ForecastUtils.GetForecast(responseJson);
+          console.log(forecast);
+          this.setForecast(forecast);
         } else {
+          console.log('Nie dobrze');
           this.setError(responseJson.message);
         }
       });
+  }
+
+  fetchData = (city, units, lang) => {
+    const urlForecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${API_KEY}&units=${units}&lang=${lang}`;
+    const urlWeather = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${API_KEY}&units=${units}&lang=${lang}`;
+    Promise.all([
+      fetch(urlWeather),
+      fetch(urlForecast),
+    ]).then(([responseWeather, responseForecast]) => {
+      Promise.all([responseWeather.json(), responseForecast.json()]).then(([weather, forecast]) => {
+        const codW = weather.cod;
+        const codF = forecast.cod;
+        if (codW === 200 && codF === '200') {
+          const processedForecast = ForecastUtils.GetForecast(forecast);
+          this.setWeather(weather);
+          this.setForecast(processedForecast);
+        } else if (codW !== 200) {
+          this.setError(weather.message);
+        } else if (codF !== '200') {
+          this.setError(forecast.message);
+        }
+      });
+    });
   }
 
   render() {
@@ -105,7 +128,7 @@ export default class WeatherApp extends Component {
       <Grid>
         <Header units={units} lang={languages} setLang={this.setLanguage} setUnit={this.setUnit} />
         <CitySearchBar setCity={this.setCity} fetchError={error} />
-        {weather && <WeatherContent weather={weather} forecast={forecast} />}
+        {(weather && forecast) && <WeatherContent weather={weather} forecast={forecast} />}
       </Grid>
     );
   }

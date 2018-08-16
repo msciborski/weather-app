@@ -10,7 +10,7 @@ import Snow from '../images/icons/weather-snowy.svg';
 import Mist from '../images/icons/weather-fog.svg';
 
 const GetIcon = (description) => {
-  const desc = description.toLoweCase();
+  const desc = description.toLowerCase();
   switch (desc) {
     case 'clear': {
       return (
