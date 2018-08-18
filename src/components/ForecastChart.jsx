@@ -15,10 +15,6 @@ export default class ForecastChart extends Component {
     const pressure = forecastDataProcessor.getPressure();
     const description = forecastDataProcessor.getDescription();
 
-    // Create global object of Chart, becouse i need to access to
-    // the canvas in customtooltip function
-    let chart;
-
     this.state = {
       labels,
       data,
@@ -27,18 +23,47 @@ export default class ForecastChart extends Component {
       pressure,
       description,
     };
+    // Create global object of Chart, becouse i need to access to
+    // the canvas in customtooltip function
+    let chart;
   }
 
   componentDidMount() {
     const { canvas } = this;
     const { labels, data } = this.state;
-    this.chart = new Chart(canvas, this.getChartOptions(labels, data));
+    const { city } = this.props;
+    this.chart = new Chart(canvas, this.getChartOptions(labels, data, city));
+  }
+
+  componentDidUpdate(prevProps) {
+    const { canvas } = this;
+    const { city } = this.props;
+    const { forecast } = this.props;
+    if (prevProps.city !== city) {
+      const forecastDataProcessor = new ForeCastDataProcessor(forecast);
+      const data = forecastDataProcessor.getData();
+      const labels = forecastDataProcessor.getLabels();
+      const tempMin = forecastDataProcessor.getTempMin();
+      const tempMax = forecastDataProcessor.getTempMax();
+      const pressure = forecastDataProcessor.getPressure();
+      const description = forecastDataProcessor.getDescription();
+      this.setState = () => ({
+        labels,
+        data,
+        tempMin,
+        tempMax,
+        pressure,
+        description,
+      });
+      this.chart.destroy();
+      this.chart = new Chart(canvas, this.getChartOptions(labels, data, city));
+    }
   }
 
   setCanvasRef = (element) => { this.canvas = element; }
 
 
-  getChartOptions = (labels, data) => ({
+  getChartOptions = (labels, data, text) => ({
     type: 'bar',
     data: {
       labels,
@@ -55,7 +80,7 @@ export default class ForecastChart extends Component {
       },
       title: {
         display: true,
-        text: 'Poznan',
+        text,
       },
       tooltips: {
         enabled: false,
@@ -96,7 +121,7 @@ export default class ForecastChart extends Component {
       const { tempMin } = this.state;
       const { tempMax } = this.state;
       const { pressure } = this.state;
-      const { description } = this.state;
+      // const { description } = this.state;
 
       const labelHtml = `<div class="weather-content__header__forecast-chart__tooltip__body__label">
                                   <span>${label}</span>
@@ -150,4 +175,5 @@ ForecastChart.propTypes = {
     main: PropTypes.string.isRequired,
     clouds: PropTypes.number.isRequired,
   })).isRequired,
+  city: PropTypes.string.isRequired,
 };

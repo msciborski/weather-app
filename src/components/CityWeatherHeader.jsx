@@ -30,7 +30,7 @@ const CityWeatherHeader = (props) => {
   return (
     <div className="weather-content__header">
       <MainWeatherInformation mainInformation={mainInformation} />
-      <ForecastChart forecast={forecast} />
+      <ForecastChart forecast={forecast} city={city} />
     </div>
   );
 };
